@@ -1,38 +1,39 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 
 namespace Serialization
 {
+    [Serializable]
     class Program
     {
+       
         static void Main(string[] args)
         {
             string filename = "task.json";
             string path = Path.GetFullPath(filename);
-            Console.WriteLine(path);
+           
 
-            
+            string jsonfile = File.ReadAllText(path);
 
-            
-            // File json = JsonCovert.DeserializedIbject<File>(path);
 
-            using (FileStream stream = new FileStream(path, FileMode.Open))
-            {
-                File file =  JsonSerializer.Deserialize<File>(stream);
-                Console.WriteLine(file.param1, file.param2, file.param3);
-            }
+            Filejson json = JsonConvert.DeserializeObject<Filejson>(jsonfile);
+
+           
+             Console.WriteLine($"ProductId: {json.ProductId} \nProductId: {json.Description} \nPrice: {json.Price}");
+
+
 
         }
     }
 
-    public class File
+    public class Filejson
     {
-        public string param1 { get; set; }
-        public string param2 { get; set; }
-        public double param3 { get; set; }
+        public string ProductId { get; set; }
+        public string Description { get; set; }
+        public double Price { get; set; }
        
 
       
