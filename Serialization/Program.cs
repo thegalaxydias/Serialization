@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Serialization
 {
-    [Serializable]
+  
     class Program
     {
        
